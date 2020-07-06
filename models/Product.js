@@ -25,7 +25,7 @@ const ProductSchema = new mongoose.Schema({
     type: String
   },
   code: {
-    type: Number
+    type: String
   },
   hotSell: {
     type: String

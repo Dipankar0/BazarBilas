@@ -151,12 +151,6 @@ const Product = ({
                 </div>
               </Grid>
             </Grid>
-            <hr className='my-3' />
-            <div className='my-3'>
-              <p>
-                <strong>Description: </strong> {product.description} Taka
-              </p>
-            </div>
           </Fragment>
         ) : (
           <Fragment>

@@ -164,13 +164,7 @@ router.post('/update/:id', [
     check('quantity', 'Quantity is required')
       .not()
       .isEmpty(),
-    check('notPrice', 'Crossed price is required')
-      .not()
-      .isEmpty(),
     check('price', 'Price is required')
-      .not()
-      .isEmpty(),
-    check('description', 'Product description is required')
       .not()
       .isEmpty(),
     check('code', 'Product Code is required')

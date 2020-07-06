@@ -26,7 +26,7 @@ export const addProduct = (fd, history) => async dispatch => {
 
     dispatch(setAlert('Profile Created', 'success'));
 
-    history.push(`/products/productId/${res.data._id}`);
+    //history.push(`/products/productId/${res.data._id}`);
   } catch (err) {
     const errors = err.response.data.errors;
 
@@ -115,14 +115,14 @@ export const updateProduct = (formData, id, history) => async dispatch => {
   }
 };
 
-export const updateFiles = (fd, history) => async dispatch => {
+export const updateFiles = (fd, id, history) => async dispatch => {
   try {
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
       }
     };
-    const res = await axios.post('/api/product/updateFiles', fd, config);
+    const res = await axios.post(`/api/product/updateFiles/${id}`, fd, config);
     dispatch({
       type: GET_PRODUCT,
       payload: res.data

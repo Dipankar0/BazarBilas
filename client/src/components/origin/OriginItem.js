@@ -7,7 +7,7 @@ import { Grid } from '@material-ui/core';
 const OriginItem = ({ origin: { name, files, _id } }) => {
   return (
     <Fragment>
-      <Grid item xs={4} md={3}>
+      <Grid item xs={6} md={3}>
         <Link to={`/products/${_id}`}>
           <img className='originImage' src={files[0]} alt='Origin' />
           <p style={{ textAlign: 'center' }}>{name}</p>

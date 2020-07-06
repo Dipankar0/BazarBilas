@@ -30,8 +30,13 @@ const UpdateProduct = ({
   removeHotSellByID,
   makeItemNotAvailable,
   match,
+  fileID,
   history
 }) => {
+  if (product) {
+    fileID = product._id;
+  }
+
   const [formData, setFormData] = useState(initialState);
 
   const [file, setFile] = useState('');
@@ -80,7 +85,7 @@ const UpdateProduct = ({
     for (const key of Object.keys(file)) {
       fd.append('file', file[key]);
     }
-    updateFiles(fd, history);
+    updateFiles(fd, fileID, history);
   };
 
   return (
@@ -107,7 +112,7 @@ const UpdateProduct = ({
             </div>
             <div className='form-group'>
               <input
-                type='number'
+                type='text'
                 placeholder='Product Code'
                 name='code'
                 value={code}

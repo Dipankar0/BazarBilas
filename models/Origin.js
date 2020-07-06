@@ -7,6 +7,12 @@ const OriginSchema = new mongoose.Schema({
   section: {
     type: String
   },
+  available: {
+    type: String
+  },
+  landing: {
+    type: String
+  },
   files: {
     type: Array
   },

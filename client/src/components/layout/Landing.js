@@ -18,19 +18,9 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
   return (
     <Fragment>
       <div>
-        <Carousel
-          autoPlay={true}
-          indicators={false}
-          animation='fade'
-          timeout={500}
-        >
-          <div>
-            <img className='image' src={img} alt='Promo' />
-          </div>
-          <div>
-            <img className='image' src={img} alt='Promo' />
-          </div>
-        </Carousel>
+        <div>
+          <img className='image' src={img} alt='Promo' />
+        </div>
       </div>
       <div>
         <div className='my-2'>
@@ -44,9 +34,10 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
               <Grid container spacing={1}>
                 {origins.map(origin => (
                   <Fragment>
-                    {origin.section === 'organic' && (
-                      <OriginItem key={origin._id} origin={origin} />
-                    )}
+                    {origin.section === 'organic' &&
+                      origin.landing === 'yes' && (
+                        <OriginItem key={origin._id} origin={origin} />
+                      )}
                   </Fragment>
                 ))}
               </Grid>
@@ -71,7 +62,7 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
               <Grid container spacing={1}>
                 {origins.map(origin => (
                   <Fragment>
-                    {origin.section === 'tryus' && (
+                    {origin.section === 'tryus' && origin.landing === 'yes' && (
                       <OriginItem key={origin._id} origin={origin} />
                     )}
                   </Fragment>
@@ -98,9 +89,10 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
               <Grid container spacing={1}>
                 {origins.map(origin => (
                   <Fragment>
-                    {origin.section === 'general' && (
-                      <OriginItem key={origin._id} origin={origin} />
-                    )}
+                    {origin.section === 'general' &&
+                      origin.landing === 'yes' && (
+                        <OriginItem key={origin._id} origin={origin} />
+                      )}
                   </Fragment>
                 ))}
               </Grid>

@@ -42,6 +42,7 @@ import NormalDelivery from './components/Order/NormalDelivery';
 import AllCanceledOrderList from './components/Order/AllCanceledOrderList';
 import PasswordChange from './components/auth/PasswordChange';
 import Print from './components/layout/Print';
+import UpdateOrigin from './components/origin/UpdateOrigin';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -104,6 +105,11 @@ const App = () => {
                   exact
                   path='/updateproduct/:id'
                   component={UpdateProduct}
+                />
+                <PrivateRoute
+                  exact
+                  path='/updateorigin/:id'
+                  component={UpdateOrigin}
                 />
                 <PrivateRoute exact path='/addProduct' component={AddProduct} />
                 <PrivateRoute exact path='/cart' component={Cart} />

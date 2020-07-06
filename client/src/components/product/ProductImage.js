@@ -26,12 +26,7 @@ const ProductAbout = ({
         </Fragment>
       ) : (
         <Fragment>
-          <img
-            className='origin'
-            src={files[0]}
-            alt='Origin'
-            className='imageProduct'
-          />
+          <img src={files[0]} alt='Origin' className='imageProduct' />
         </Fragment>
       )}
     </div>

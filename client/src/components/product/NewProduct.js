@@ -99,7 +99,7 @@ const NewProduct = ({
         </div>
         <div className='form-group'>
           <input
-            type='number'
+            type='text'
             placeholder='Product Code'
             name='code'
             value={code}
