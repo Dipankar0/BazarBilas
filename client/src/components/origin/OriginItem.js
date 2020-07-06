@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Carousel from 'react-material-ui-carousel';
 import { Grid } from '@material-ui/core';
 
 const OriginItem = ({ origin: { name, files, _id } }) => {
