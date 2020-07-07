@@ -11,6 +11,7 @@ import {
 } from '../../actions/cart';
 
 const ProductItem = ({
+  auth: { isAuthenticated },
   product: { _id, name, quantity, price, notPrice, available, brand, files },
   addItemToCart,
   addCartItem,
@@ -61,57 +62,59 @@ const ProductItem = ({
             </div>
           </div>
         </Link>
-        <Fragment>
-          {available && available === 'no' ? (
-            <Fragment>
-              <div>
-                <p className='lead text-red'>Stock Out</p>
-              </div>
-            </Fragment>
-          ) : (
-            <Fragment>
-              {cart !== null ? (
-                <Fragment>
-                  {(exitItem = cart.products.find(
-                    item => item.product._id === _id
-                  )) ? (
-                    <p className='inline addtocart text-center '>
+        {isAuthenticated && (
+          <Fragment>
+            {available && available === 'no' ? (
+              <Fragment>
+                <div>
+                  <p className='lead text-red'>Stock Out</p>
+                </div>
+              </Fragment>
+            ) : (
+              <Fragment>
+                {cart !== null ? (
+                  <Fragment>
+                    {(exitItem = cart.products.find(
+                      item => item.product._id === _id
+                    )) ? (
+                      <p className='inline addtocart text-center '>
+                        <button
+                          className='  badge-firm '
+                          onClick={id => plusItem(exitItem.product._id)}
+                        >
+                          <i class='fas fa-plus'></i>
+                        </button>{' '}
+                        <p style={{ width: '40%' }} className=' badge-golden'>
+                          {exitItem.count}
+                        </p>{' '}
+                        <button
+                          className='  badge-red '
+                          onClick={id => minusItem(exitItem.product._id)}
+                        >
+                          <i class='fas fa-minus'></i>
+                        </button>
+                      </p>
+                    ) : (
                       <button
-                        className='  badge-firm '
-                        onClick={id => plusItem(exitItem.product._id)}
+                        className='btn btn-golden addtocart'
+                        onClick={e => addToCart(_id)}
                       >
-                        <i class='fas fa-plus'></i>
-                      </button>{' '}
-                      <p style={{ width: '40%' }} className=' badge-golden'>
-                        {exitItem.count}
-                      </p>{' '}
-                      <button
-                        className='  badge-red '
-                        onClick={id => minusItem(exitItem.product._id)}
-                      >
-                        <i class='fas fa-minus'></i>
+                        Add to Cart
                       </button>
-                    </p>
-                  ) : (
-                    <button
-                      className='btn btn-golden addtocart'
-                      onClick={e => addToCart(_id)}
-                    >
-                      Add to Cart
-                    </button>
-                  )}
-                </Fragment>
-              ) : (
-                <button
-                  className='btn btn-golden addtocart'
-                  onClick={e => addToCart(_id)}
-                >
-                  Add to Cart
-                </button>
-              )}
-            </Fragment>
-          )}
-        </Fragment>
+                    )}
+                  </Fragment>
+                ) : (
+                  <button
+                    className='btn btn-golden addtocart'
+                    onClick={e => addToCart(_id)}
+                  >
+                    Add to Cart
+                  </button>
+                )}
+              </Fragment>
+            )}
+          </Fragment>
+        )}
       </Grid>
     </Fragment>
   );
@@ -122,6 +125,7 @@ ProductItem.defaultProps = {
 };
 
 ProductItem.propTypes = {
+  auth: PropTypes.object.isRequired,
   addItemToCart: PropTypes.func.isRequired,
   getMyCart: PropTypes.func.isRequired,
   addCartItem: PropTypes.func.isRequired,
@@ -132,6 +136,7 @@ ProductItem.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   order: state.order
 });
 
