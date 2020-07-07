@@ -37,64 +37,71 @@ const Cart = ({
     <Fragment>
       {cart && cart !== null ? (
         <Fragment>
-          {cart.products.map(product => (
-            <Grid container className='my-1 b-1'>
-              <Grid item md={6} xs={6} className='p-1'>
-                <img
-                  src={product.product.files[0]}
-                  alt='product'
-                  style={{ width: '150px', height: '150px' }}
-                />
-              </Grid>
-              <Grid item md={6} xs={6}>
-                <Grid item>
-                  <div className='my-1'>
-                    <p>{product.product.name}</p>
-                    <p>{product.product.price} Taka</p>
-                  </div>
+          {cart.products.length > 0 ? (
+            <Fragment>
+              {' '}
+              {cart.products.map(product => (
+                <Grid container className='my-1 b-1'>
+                  <Grid item md={6} xs={6} className='p-1'>
+                    <img
+                      src={product.product.files[0]}
+                      alt='product'
+                      style={{ width: '150px', height: '150px' }}
+                    />
+                  </Grid>
+                  <Grid item md={6} xs={6}>
+                    <Grid item>
+                      <div className='my-1'>
+                        <p>{product.product.name}</p>
+                        <p>{product.product.price} Taka</p>
+                      </div>
+                    </Grid>
+                    <Grid item>
+                      <p className='inline lead my-1'>
+                        <button
+                          className='  badge-golden '
+                          onClick={id => plusItem(product.product._id)}
+                        >
+                          <i class='fas fa-plus'></i>
+                        </button>{' '}
+                        <p
+                          style={{ width: '60px' }}
+                          className='text-center bd-primary'
+                        >
+                          {product.count}
+                        </p>{' '}
+                        <button
+                          className='  badge-red '
+                          onClick={id => minusItem(product.product._id)}
+                        >
+                          <i class='fas fa-minus'></i>
+                        </button>
+                      </p>
+                      <button
+                        className='btn btn-red'
+                        onClick={id => removeItem(product.product._id)}
+                      >
+                        Remove
+                      </button>
+                    </Grid>
+                  </Grid>
                 </Grid>
-                <Grid item>
-                  <p className='inline lead my-1'>
-                    <button
-                      className='  badge-golden '
-                      onClick={id => plusItem(product.product._id)}
-                    >
-                      <i class='fas fa-plus'></i>
-                    </button>{' '}
-                    <p
-                      style={{ width: '60px' }}
-                      className='text-center bd-primary'
-                    >
-                      {product.count}
-                    </p>{' '}
-                    <button
-                      className='  badge-red '
-                      onClick={id => minusItem(product.product._id)}
-                    >
-                      <i class='fas fa-minus'></i>
-                    </button>
-                  </p>
-                  <button
-                    className='btn btn-red'
-                    onClick={id => removeItem(product.product._id)}
-                  >
-                    Remove
-                  </button>
-                </Grid>
-              </Grid>
-            </Grid>
-          ))}
-          <p className='mid'>
-            <strong>Total Item: </strong>
-            {cart.quantity}
-          </p>
-          <p className='mid'>
-            <strong>Total Price: </strong>
-            {cart.total}
-          </p>
-          <Link to='/newOrder' className='btn btn-red'>
-            Place Order
-          </Link>
+              ))}
+              <p className='mid'>
+                <strong>Total Item: </strong>
+                {cart.quantity}
+              </p>
+              <p className='mid'>
+                <strong>Total Price: </strong>
+                {cart.total}
+              </p>
+              <Link to='/newOrder' className='btn btn-red'>
+                Place Order
+              </Link>
+            </Fragment>
+          ) : (
+            <Fragment>You have not added any item to cart</Fragment>
+          )}
         </Fragment>
       ) : (
         <Fragment>You have not added any item to cart</Fragment>

@@ -117,7 +117,7 @@ const UpdateOrigin = ({
               </select>
               <small className='form-text'>Please select correctly</small>
             </div>
-            <input type='submit' className='btn btn-primary' value='Create' />
+            <input type='submit' className='btn btn-firm' value='Create' />
           </form>
           <Fragment>
             <Carousel autoPlay={false}>
@@ -146,7 +146,7 @@ const UpdateOrigin = ({
                 />
                 <small className='form-text'>Select Origin Images</small>
               </div>
-              <input type='submit' className='btn btn-primary' value='Create' />
+              <input type='submit' className='btn btn-firm' value='Create' />
             </form>
           </Fragment>
           <Fragment>
@@ -167,7 +167,7 @@ const UpdateOrigin = ({
                 {' '}
                 <div className='my-1'>
                   <button
-                    className='btn btn-primary'
+                    className='btn btn-firm'
                     onClick={e => setOriginLanding(e)}
                   >
                     Make Landing

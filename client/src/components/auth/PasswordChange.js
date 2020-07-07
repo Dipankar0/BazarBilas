@@ -91,7 +91,7 @@ const PasswordChange = ({ passwordChange }) => {
             </i>
           )}
         </div>
-        <input type='submit' className='btn btn-primary' value='Update' />
+        <input type='submit' className='btn btn-firm' value='Update' />
       </form>
     </Fragment>
   );

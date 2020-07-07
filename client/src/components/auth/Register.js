@@ -77,7 +77,7 @@ const Register = ({ setAlert, register, isAuthenticated, history }) => {
             onChange={e => onChange(e)}
           />
         </div>
-        <input type='submit' className='btn btn-primary' value='Register' />
+        <input type='submit' className='btn btn-firm' value='Register' />
       </form>
       <p className='my-1 text-red'>
         Already have an account? <Link to='/login'>Sign In</Link>

@@ -124,7 +124,7 @@ const NormalDelivery = ({
               <input
                 type='submit'
                 placeholder='Confirm'
-                className='btn btn-primary my-1'
+                className='btn btn-firm my-1'
               />
             </div>
           </form>

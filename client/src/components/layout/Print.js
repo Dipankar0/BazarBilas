@@ -2,8 +2,15 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
-import OrderProductItem from '../Order/OrderProductItem';
-import { Grid } from '@material-ui/core';
+import {
+  Grid,
+  TableContainer,
+  Table,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell
+} from '@material-ui/core';
 import { getOrderById, onOrderPrint } from '../../actions/order';
 
 const Print = ({ order: { order }, getOrderById, onOrderPrint, match }) => {
@@ -34,16 +41,38 @@ const Print = ({ order: { order }, getOrderById, onOrderPrint, match }) => {
               </p>
             </Grid>
             <Grid item md={6} xs={12}>
-              {order.cart.products.map(product => (
-                <ul>
-                  <li>
-                    <OrderProductItem key={product._id} product={product} />
-                  </li>
-                </ul>
-              ))}
+              <p className='mid text-center badge-golden'>Product: </p>
+              <TableContainer>
+                <Table size='small' aria-label='a dense table'>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Product</TableCell>
+                      <TableCell align='right'>Portion</TableCell>
+                      <TableCell align='right'>Quantity</TableCell>
+                      <TableCell align='right'>Price</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {order.order.cart.products.map(product => (
+                      <TableRow>
+                        <TableCell component='th' scope='row'>
+                          {product.product.name}
+                        </TableCell>
+                        <TableCell align='right'>
+                          {product.product.quantity}
+                        </TableCell>
+                        <TableCell align='right'>{product.count}</TableCell>
+                        <TableCell align='right'>
+                          {product.product.price}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
             </Grid>
           </Grid>
-          <button onClick={e => onCick(e)} className='btn btn-primary'>
+          <button onClick={e => onCick(e)} className='btn btn-firm'>
             Print
           </button>
         </Fragment>

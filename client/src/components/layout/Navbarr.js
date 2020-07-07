@@ -28,7 +28,7 @@ const Navbarr = ({
   };
 
   const authLinks = (
-    <nav className='navbar bg-primary'>
+    <nav className='navbar bg-firm'>
       <div>
         <h1 className=''>
           <Link to='/'>
@@ -43,11 +43,9 @@ const Navbarr = ({
       </div>
       <div>
         <p>
-          {cart && cart.products ? (
-            <Link
-              to='/cart' //style={{ color: 'red' }}
-            >
-              <i class='fas fa-cart-plus'></i> {cart.products.length}
+          {cart && cart.products.length > 0 ? (
+            <Link to='/cart' style={{ color: '#fdf2e9' }}>
+              Buy <i class='fas fa-cart-plus'></i> {cart.products.length}
             </Link>
           ) : (
             <Link to='/cart'>
@@ -94,7 +92,7 @@ const Navbarr = ({
   );
 
   const guestLinks = (
-    <nav className='navbar bg-primary'>
+    <nav className='navbar bg-firm'>
       <div>
         <h1 className=''>
           <Link to='/'>

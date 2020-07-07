@@ -1,13 +1,41 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Grid } from '@material-ui/core';
+import {
+  addItemToCart,
+  getMyCart,
+  reduceCartItem,
+  addCartItem
+} from '../../actions/cart';
 
 const ProductItem = ({
-  auth: { isAuthenticated },
-  product: { _id, name, quantity, price, notPrice, desciption, brand, files }
+  product: { _id, name, quantity, price, notPrice, available, brand, files },
+  addItemToCart,
+  addCartItem,
+  reduceCartItem,
+  getMyCart,
+  order: { cart },
+  match,
+  exitItem
 }) => {
+  useEffect(() => {
+    getMyCart();
+  }, [getMyCart]);
+
+  const minusItem = id => {
+    reduceCartItem(id);
+  };
+
+  const plusItem = id => {
+    addCartItem(id);
+  };
+
+  const addToCart = id => {
+    addItemToCart(id);
+  };
+
   return (
     <Fragment>
       <Grid item xs={6} md={3}>
@@ -33,6 +61,57 @@ const ProductItem = ({
             </div>
           </div>
         </Link>
+        <Fragment>
+          {available && available === 'no' ? (
+            <Fragment>
+              <div>
+                <p className='lead text-red'>Stock Out</p>
+              </div>
+            </Fragment>
+          ) : (
+            <Fragment>
+              {cart !== null ? (
+                <Fragment>
+                  {(exitItem = cart.products.find(
+                    item => item.product._id === _id
+                  )) ? (
+                    <p className='inline addtocart text-center '>
+                      <button
+                        className='  badge-firm '
+                        onClick={id => plusItem(exitItem.product._id)}
+                      >
+                        <i class='fas fa-plus'></i>
+                      </button>{' '}
+                      <p style={{ width: '40%' }} className=' badge-golden'>
+                        {exitItem.count}
+                      </p>{' '}
+                      <button
+                        className='  badge-red '
+                        onClick={id => minusItem(exitItem.product._id)}
+                      >
+                        <i class='fas fa-minus'></i>
+                      </button>
+                    </p>
+                  ) : (
+                    <button
+                      className='btn btn-golden addtocart'
+                      onClick={e => addToCart(_id)}
+                    >
+                      Add to Cart
+                    </button>
+                  )}
+                </Fragment>
+              ) : (
+                <button
+                  className='btn btn-golden addtocart'
+                  onClick={e => addToCart(_id)}
+                >
+                  Add to Cart
+                </button>
+              )}
+            </Fragment>
+          )}
+        </Fragment>
       </Grid>
     </Fragment>
   );
@@ -43,13 +122,22 @@ ProductItem.defaultProps = {
 };
 
 ProductItem.propTypes = {
+  addItemToCart: PropTypes.func.isRequired,
+  getMyCart: PropTypes.func.isRequired,
+  addCartItem: PropTypes.func.isRequired,
+  reduceCartItem: PropTypes.func.isRequired,
+  order: PropTypes.object.isRequired,
   product: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired,
   showActions: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  order: state.order
 });
 
-export default connect(mapStateToProps)(ProductItem);
+export default connect(mapStateToProps, {
+  addItemToCart,
+  reduceCartItem,
+  addCartItem,
+  getMyCart
+})(ProductItem);

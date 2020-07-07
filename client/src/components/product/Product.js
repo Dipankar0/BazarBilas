@@ -124,7 +124,7 @@ const Product = ({
                                   </div>
                                 ) : (
                                   <button
-                                    className='btn btn-primary'
+                                    className='btn btn-firm'
                                     onClick={e => addToCart(e)}
                                   >
                                     Add to Cart
@@ -133,7 +133,7 @@ const Product = ({
                               </Fragment>
                             ) : (
                               <button
-                                className='btn btn-primary'
+                                className='btn btn-firm'
                                 onClick={e => addToCart(e)}
                               >
                                 Add to Cart
@@ -143,7 +143,7 @@ const Product = ({
                         )}
                       </Fragment>
                     ) : (
-                      <Link to='/register' className='btn btn-primary'>
+                      <Link to='/register' className='btn btn-firm'>
                         Add to Cart
                       </Link>
                     )}

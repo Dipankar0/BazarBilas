@@ -190,7 +190,7 @@ const NewProduct = ({
           />
           <small className='form-text'>Select Product Images</small>
         </div>
-        <input type='submit' className='btn btn-primary' value='Create' />
+        <input type='submit' className='btn btn-firm' value='Create' />
       </form>
     </Fragment>
   );

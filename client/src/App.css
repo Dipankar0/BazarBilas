@@ -161,6 +161,7 @@ ul {
   outline: none;
 }
 .addtocart {
+  margin-left: 23%;
   font-size: 1.4rem;
   margin-bottom: 1rem;
 }
@@ -347,5 +348,9 @@ button {
   }
   .lead {
     font-size: 1rem;
+  }
+  .addtocart {
+    font-size: 0.7rem;
+    margin-bottom: 0rem;
   }
 }

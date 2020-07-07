@@ -161,7 +161,7 @@ const UpdateProduct = ({
                 Write about the product in details
               </small>
             </div>
-            <input type='submit' className='btn btn-primary' value='Create' />
+            <input type='submit' className='btn btn-firm' value='Create' />
           </form>
           <Fragment>
             <Carousel autoPlay={false}>
@@ -190,7 +190,7 @@ const UpdateProduct = ({
                 />
                 <small className='form-text'>Select Product Images</small>
               </div>
-              <input type='submit' className='btn btn-primary' value='Create' />
+              <input type='submit' className='btn btn-firm' value='Create' />
             </form>
           </Fragment>
           <Fragment>
@@ -211,7 +211,7 @@ const UpdateProduct = ({
                 {' '}
                 <div className='my-1'>
                   <button
-                    className='btn btn-primary'
+                    className='btn btn-firm'
                     onClick={e => makeItemHotSell(e)}
                   >
                     Make Hot Sell

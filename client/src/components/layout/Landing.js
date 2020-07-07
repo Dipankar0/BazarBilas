@@ -25,7 +25,7 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
       <div>
         <div className='my-2'>
           <p style={{ textAlign: 'center' }} className='badge-golden mid'>
-            Organic Section
+            Organic / Natural
           </p>
         </div>
         <Fragment>
@@ -43,7 +43,7 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
               </Grid>
               <div style={{ textAlign: 'center' }}>
                 <Link to='/organic'>
-                  <button className='btn btn-primary'>View All</button>
+                  <button className='btn btn-firm'>View All</button>
                 </Link>
               </div>
             </Fragment>
@@ -70,7 +70,7 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
               </Grid>
               <div style={{ textAlign: 'center' }}>
                 <Link to='/tryus'>
-                  <button className='btn btn-primary'>View All</button>
+                  <button className='btn btn-firm'>View All</button>
                 </Link>
               </div>
             </Fragment>
@@ -80,7 +80,7 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
       <div className='my-2'>
         <div className='my-2'>
           <p style={{ textAlign: 'center' }} className='badge-golden mid'>
-            General Section
+            General Store
           </p>
         </div>
         <Fragment>
@@ -98,7 +98,7 @@ const Landing = ({ getAllOrigins, origin: { origins } }) => {
               </Grid>
               <div style={{ textAlign: 'center' }}>
                 <Link to='/general'>
-                  <button className='btn btn-primary'>View All</button>
+                  <button className='btn btn-firm'>View All</button>
                 </Link>
               </div>
             </Fragment>

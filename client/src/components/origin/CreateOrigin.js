@@ -66,7 +66,7 @@ const CreateOrigin = ({ addOrigin, history }) => {
           />
           <small className='form-text'>Select Origin Images</small>
         </div>
-        <input type='submit' className='btn btn-primary' value='Create' />
+        <input type='submit' className='btn btn-firm' value='Create' />
       </form>
     </Fragment>
   );

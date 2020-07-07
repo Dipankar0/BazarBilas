@@ -12,17 +12,17 @@ const Home = ({ auth: { user } }) => {
           <p className='large text-firm'>Welcome To Management</p>
           <Grid container spacing={3}>
             <Grid item>
-              <Link to='/createOrigin' className='btn btn-primary'>
+              <Link to='/createOrigin' className='btn btn-firm'>
                 Create Origin
               </Link>
             </Grid>
             <Grid item>
-              <Link to='addProduct' className='btn btn-primary'>
+              <Link to='addProduct' className='btn btn-firm'>
                 Add Product
               </Link>
             </Grid>
             <Grid item>
-              <Link to='/allprocessingorderlist' className='btn btn-primary'>
+              <Link to='/allprocessingorderlist' className='btn btn-firm'>
                 Processing Orders
               </Link>
             </Grid>
