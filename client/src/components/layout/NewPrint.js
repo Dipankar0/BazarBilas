@@ -1,7 +1,9 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { getOrderById } from '../../actions/order';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 import {
   Grid,
   TableContainer,
@@ -11,16 +13,35 @@ import {
   TableHead,
   TableCell
 } from '@material-ui/core';
-import { getOrderById, onOrderPrint } from '../../actions/order';
+import Moment from 'react-moment';
 
-const Print = ({ order: { order }, getOrderById, onOrderPrint, match }) => {
+const NewPrint = ({ order: { order }, getOrderById, match }) => {
   useEffect(() => {
     getOrderById(match.params.id);
   }, [getOrderById, match.params.id]);
 
-  const onCick = e => {
-    console.log(match.params.id);
-    onOrderPrint(match.params.id);
+  const generatePDF = order => {
+    const doc = new jsPDF();
+
+    const tableColumn = ['Product', 'Portion', 'Quantity', 'Price'];
+
+    const tableRows = [];
+
+    order.cart.products.map(product => {
+      const productData = [
+        product.product.name,
+        product.product.quantity,
+        product.count,
+        product.product.price
+      ];
+      tableRows.push(productData);
+    });
+
+    doc.autoTable(tableColumn, tableRows, { startY: 20 });
+
+    doc.text('Closed tickets within the last one month.', 14, 15);
+
+    doc.save('test.pdf');
   };
 
   return (
@@ -72,7 +93,7 @@ const Print = ({ order: { order }, getOrderById, onOrderPrint, match }) => {
               </TableContainer>
             </Grid>
           </Grid>
-          <button onClick={e => onCick(e)} className='btn btn-firm'>
+          <button onClick={e => generatePDF(order)} className='btn btn-firm'>
             Print
           </button>
         </Fragment>
@@ -81,14 +102,13 @@ const Print = ({ order: { order }, getOrderById, onOrderPrint, match }) => {
   );
 };
 
-Print.propTypes = {
+NewPrint.propTypes = {
   order: PropTypes.object.isRequired,
-  getOrderById: PropTypes.func.isRequired,
-  onOrderPrint: PropTypes.func.isRequired
+  getOrderById: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   order: state.order
 });
 
-export default connect(mapStateToProps, { getOrderById, onOrderPrint })(Print);
+export default connect(mapStateToProps, { getOrderById })(NewPrint);

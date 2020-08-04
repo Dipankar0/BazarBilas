@@ -41,7 +41,7 @@ import AllSentOrderList from './components/Order/AllSentOrderList';
 import NormalDelivery from './components/Order/NormalDelivery';
 import AllCanceledOrderList from './components/Order/AllCanceledOrderList';
 import PasswordChange from './components/auth/PasswordChange';
-import Print from './components/layout/Print';
+import NewPrint from './components/layout/NewPrint';
 import UpdateOrigin from './components/origin/UpdateOrigin';
 
 if (localStorage.token) {
@@ -159,7 +159,7 @@ const App = () => {
                   path='/mydeliveredorderlist'
                   component={MyDeliveredOrderList}
                 />
-                <PrivateRoute exact path='/print/:id' component={Print} />
+                <PrivateRoute exact path='/print/:id' component={NewPrint} />
               </Switch>
             </section>
           </Fragment>
