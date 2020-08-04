@@ -23,6 +23,21 @@ const NewPrint = ({ order: { order }, getOrderById, match }) => {
   const generatePDF = order => {
     const doc = new jsPDF();
 
+    const bazarCl = [
+      'www.bazarbilas.com',
+      '+8801841904994',
+      'bazarbilas@gmail.com'
+    ];
+
+    const bazarRow = [];
+
+    const shipTableCl = ['Phone', 'Area', 'Thana'];
+
+    const shipRow = [];
+
+    const shipData = [order.phone, order.location, order.thana];
+    shipRow.push(shipData);
+
     const tableColumn = ['Product', 'Portion', 'Quantity', 'Price'];
 
     const tableRows = [];
@@ -37,9 +52,27 @@ const NewPrint = ({ order: { order }, getOrderById, match }) => {
       tableRows.push(productData);
     });
 
-    doc.autoTable(tableColumn, tableRows, { startY: 20 });
+    doc.autoTable(bazarCl, bazarRow, { startY: 20 });
+    doc.autoTable(shipTableCl, shipRow, { startY: 115 });
+    doc.autoTable(tableColumn, tableRows, { startY: 135 });
 
-    doc.text('Closed tickets within the last one month.', 14, 15);
+    doc.setFontSize(22);
+    doc.text('Bazar Bilas', 14, 15);
+
+    doc.setFontSize(10);
+    doc.text(`Customer Name: ${order.user.name}`, 14, 35);
+    doc.text(`Customer Mobile: ${order.user.phone}`, 14, 45);
+    doc.text(`Invoice Number: ${order._id}`, 14, 55);
+    doc.text(`Order date: ${order.date}`, 14, 65);
+    doc.text(`Payment type: Cash On Delivery`, 14, 75);
+
+    doc.setFontSize(15);
+    doc.text('Ship to', 14, 110);
+
+    doc.setFontSize(20);
+    doc.setTextColor(255, 0, 0);
+    doc.text(`Product Price: ${order.cart.total}`, 14, 85);
+    doc.text(`Delivery Price: ${order.deliveryCost}`, 14, 95);
 
     doc.save('test.pdf');
   };

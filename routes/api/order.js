@@ -83,7 +83,10 @@ router.get('/my', auth, async (req, res) => {
 
 router.get('/order/:id', auth, async (req, res) => {
   try {
-    const order = await Order.findById(req.params.id);
+    const order = await Order.findById(req.params.id).populate('user', [
+      'name',
+      'phone'
+    ]);
     if (order) {
       res.json(order);
     } else {
